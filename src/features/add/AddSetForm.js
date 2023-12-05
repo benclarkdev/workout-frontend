@@ -1,28 +1,32 @@
 import { useState } from 'react';
 
 export default function AddSetForm(){
-  // form states
-  const [person, setPerson] = useState(null);
-  const [exercise, setExercise] = useState(null);
-  const [reps, setReps] = useState(null);
-  const [weight, setWeight] = useState(null);
+  const [inputs, setInputs] = useState({});
 
   const [status, setStatus] = useState('typing');
   const [error, setError] = useState(null);
 
-  async function handleSubmit(event){
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(previousState => ({
+      ...previousState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log(inputs);
+  };
+
+  async function jandleSubmit(event){
     event.preventDefault();
     setStatus('submitting');
 
-    let set = {
-      person,
-      exercise,
-      reps,
-      weight
-    };
-
     try {
-      await submitForm(set);
+      await submitForm(inputs);
       setStatus('success');
     } catch (err) {
       setStatus('typing');
@@ -37,43 +41,39 @@ export default function AddSetForm(){
   return (
     <form onSubmit={handleSubmit}>
       <label for="person">Person</label>
-      <select name="person" 
-              id="person" 
-              value={person}
-              onChange={(e) => setPerson(e.target.value)}
+      <select name="person"
+              value={inputs.person}
+              onChange={handleChange}
               disabled={status === 'submitting'}>
-        <option value="ben">Ben</option>
-        <option value="craig">Craig</option>
+        <option>Ben</option>
+        <option>Craig</option>
       </select>
 
       <label for="person">Exercise</label>
       <select name="exercise"
-              id="exercise"
-              value={exercise}
-              onChange={(e) => setExercise(e.target.value)}
+              value={inputs.exercise}
+              onChange={handleChange}
               disabled={status === 'submitting'}>
-        <option value="1">Pushups</option>
-        <option value="2">Curls</option>
+        <option>Pushups</option>
+        <option>Curls</option>
       </select>
 
       <label for="reps">Reps</label>
       <input type="number"
              name="reps"
-             id="reps" 
              min="1" 
              max="100"
-             value={reps}
-             onChange={(e) => setReps(e.target.value)}
+             value={inputs.reps}
+             onChange={handleChange}
              disabled={status === 'submitting'} />
 
       <label for="weight">Weight</label>
-      <input type="number"
-             name="weight" 
-             id="weight" 
+      <input name="weight"
+             type="number"
              min="1" 
              max="1000"
-             value={weight}
-             onChange={(e) => setWeight(e.target.value)}
+             value={inputs.weight}
+             onChange={handleChange}
              disabled={status === 'submitting'} />
 
       <button disabled={status==='clean' || status==='submitting'}>

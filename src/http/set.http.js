@@ -1,14 +1,14 @@
-const baseHttpService = require('./base.httpservice');
+const baseHttpService = require('./base.http');
 
-function getSetsByDate(jsDate){
+async function getSetsByDate(jsDate, onSuccess, onError, onComplete){
   const relativeUrl = `setsByDate?date=${jsDate.toISOString()}`;
-  baseHttpService.executeGet(relativeUrl, params);
+  return await baseHttpService.executeGet(relativeUrl, params, onSuccess, onError, onComplete);
 }
 
-function postSet(set){
-  const relativeUrl = '/set/create';
+async function postSet(set, onSuccess, onError, onComplete){
+  const relativeUrl = 'set/create';
   const params = { exerciseId: 1, reps: 1, person: 1, weight: 100 };
-  baseHttpService.executePost(relativeUrl, params);
+  return await baseHttpService.executePost(relativeUrl, params, onSuccess, onError, onComplete);
 }
 
 module.exports = {

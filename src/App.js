@@ -2,6 +2,7 @@ import React from "react"
 
 import AddWorkout from "./features/add/AddWorkout";
 import History from "./features/history/History";
+import ExerciseList from "./features/exercise/ExerciseList";
 
 class App extends React.Component {
   state = {
@@ -20,6 +21,7 @@ class App extends React.Component {
         <h1>Hello {this.state.name}!</h1>
         <AddWorkout/>
         <History/>
+        <ExerciseList/>
       </div>
     )
   }

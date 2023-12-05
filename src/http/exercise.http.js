@@ -1,42 +1,18 @@
 const baseHttpService = require('./base.http');
 
-function createExercise(exercise){
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      
-      if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
-      } else {
-        resolve();
-      }
-    }, 1500);
-  });
+async function createExercise(exercise, onSuccess, onError, onComplete){
+  const relativeUrl = 'exercise/create';
+  return await baseHttpService.executePost(relativeUrl, params, onSuccess, onError, onComplete);
 }
 
-function readExercises(){
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      
-      if (shouldError) {
-        reject(new Error('Good guess but a wrong answer. Try again!'));
-      } else {
-        resolve();
-      }
-    }, 1500);
-  });
+async function readExercises(onSuccess, onError, onComplete){
+  const relativeUrl = 'exercises';
+  return await baseHttpService.executePost(relativeUrl, params, onSuccess, onError, onComplete);
 }
 
-function updateExercise(exercise){
-return new Promise((resolve, reject) => {
-  setTimeout(() => {
-    
-    if (shouldError) {
-      reject(new Error('Good guess but a wrong answer. Try again!'));
-    } else {
-      resolve();
-    }
-  }, 1500);
-});
+async function updateExercise(exercise, onSuccess, onError, onComplete){
+  const relativeUrl = `exercise/${exercise.id}`;
+  return await baseHttpService.executePost(relativeUrl, params, onSuccess, onError, onComplete);
 }
 
 module.exports = {
