@@ -45,6 +45,7 @@ export default function AddSetForm(){
               value={inputs.person}
               onChange={handleChange}
               disabled={status === 'submitting'}>
+        <option></option>
         <option>Ben</option>
         <option>Craig</option>
       </select>
@@ -54,6 +55,7 @@ export default function AddSetForm(){
               value={inputs.exercise}
               onChange={handleChange}
               disabled={status === 'submitting'}>
+        <option></option>
         <option>Pushups</option>
         <option>Curls</option>
       </select>

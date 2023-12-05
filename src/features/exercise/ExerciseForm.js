@@ -31,10 +31,11 @@ export default function ExerciseForm({onSubmitForm}){
       <select name="group" 
               value={inputs.group || ''}
               onChange={handleChange}>
-        <option>Chest</option>
-        <option>Back</option>
-        <option>Legs</option>
+        <option></option>
         <option>Arms</option>
+        <option>Back</option>
+        <option>Chest</option>
+        <option>Legs</option>
         <option>Shoulders</option>
       </select>
       </label>
