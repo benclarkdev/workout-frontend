@@ -20,14 +20,14 @@ export default function ExerciseForm({onSubmitForm}){
 
   return (
     <form onSubmit={handleSubmit}>
-      <label for="name">Name
+      <label htmlFor="name">Name
         <input name="name"
                type="text"
                value={inputs.name || ''}
                onChange={handleChange}
         />
       </label>
-      <label for="group">Group
+      <label htmlFor="group">Group
       <select name="group" 
               value={inputs.group || ''}
               onChange={handleChange}>

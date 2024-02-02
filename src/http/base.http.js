@@ -1,35 +1,44 @@
-const axios = require('axios');
+async function executeGet(relativeUrl, params) {
+  try {
+    const absoluteUrl = getFullUrl(relativeUrl);
 
-async function executePost(relativeUrl, params, onSuccess, onError, onComplete){
-  const url = getFullUrl(relativeUrl);
-  await axios.post(url, params)
-    .then((response) => { onSuccess(response); })
-    .catch((error) => { onError(error); })
-    .finally(() => { onComplete(); });
+    const response = await fetch(absoluteUrl);
+    const responseJson = await response.json();
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
-async function executePut(relativeUrl, params, onSuccess, onError, onComplete){
-  const url = getFullUrl(relativeUrl);
-  await axios.put(url, params)
-    .then((response) => { onSuccess(response); })
-    .catch((error) => { onError(error); })
-    .finally(() => { onComplete(); });
-}
+async function executePost(relativeUrl, data) {
+  try {
+    const options = {
+      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      mode: "cors", // no-cors, *cors, same-origin
+      cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+      credentials: "same-origin", // include, *same-origin, omit
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: "follow", // manual, *follow, error
+      referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+      body: JSON.stringify(data), // body data type must match "Content-Type" header
+    };
 
-async function executeGet(relativeUrl, params, onSuccess, onError, onComplete){
-  const url = getFullUrl(relativeUrl);
-  await axios.post(url, params)
-    .then((response) => { onSuccess(response); })
-    .catch((error) => { onError(error); })
-    .finally(() => { onComplete(); });
-}
+    const absoluteUrl = getFullUrl(relativeUrl, options);
 
-async function executeDelete(relativeUrl, params, onSuccess, onError, onComplete){
-  const url = getFullUrl(relativeUrl);
-  await axios.delete(url, params)
-    .then((response) => { onSuccess(response); })
-    .catch((error) => { onError(error); })
-    .finally(() => { onComplete(); });
+    const response = await fetch(absoluteUrl, options);
+
+    console.log('response', response);
+
+    const responseJson = await response.json();
+
+    console.log('responseJson', responseJson);
+    return responseJson;
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 // BEGIN PRIVATE FUNCTIONS
@@ -41,8 +50,6 @@ function getFullUrl(relativePath){
 // END PRIVATE FUNCTIONS
 
 module.exports = {
-  executePost,
-  executePut,
   executeGet,
-  executeDelete
+  executePost
 };

@@ -1,18 +1,18 @@
 const baseHttpService = require('./base.http');
 
-async function createExercise(exercise, onSuccess, onError, onComplete){
+async function createExercise(exercise){
   const relativeUrl = 'exercise/create';
-  return await baseHttpService.executePost(relativeUrl, params, onSuccess, onError, onComplete);
+  return await baseHttpService.executePost(relativeUrl, exercise);
 }
 
-async function readExercises(onSuccess, onError, onComplete){
+async function readExercises(){
   const relativeUrl = 'exercises';
-  return await baseHttpService.executePost(relativeUrl, params, onSuccess, onError, onComplete);
+  return await baseHttpService.executeGet(relativeUrl);
 }
 
-async function updateExercise(exercise, onSuccess, onError, onComplete){
+async function updateExercise(exercise){ 
   const relativeUrl = `exercise/${exercise.id}`;
-  return await baseHttpService.executePost(relativeUrl, params, onSuccess, onError, onComplete);
+  return await baseHttpService.executePut(relativeUrl, exercise);
 }
 
 module.exports = {

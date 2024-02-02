@@ -1,18 +1,18 @@
 const baseHttpService = require('./base.http');
 
-async function getExerciseHistory(exerciseId, onSuccess, onError, onComplete){
+async function getExerciseHistory(exerciseId){
   const relativeUrl = `stats/historyForExercise/${exerciseId}`;
-  return await baseHttpService.executeGet(relativeUrl, params, onSuccess, onError, onComplete);
+  return await baseHttpService.executeGet(relativeUrl);
 }
 
-async function oneRepMaxActual(exerciseId, onSuccess, onError, onComplete){
+async function oneRepMaxActual(exerciseId){
   const relativeUrl = `stats/oneRepMaxActual/${exerciseId}`;
-  return await baseHttpService.executeGet(relativeUrl, params, onSuccess, onError, onComplete);
+  return await baseHttpService.executeGet(relativeUrl);
 }
 
-async function oneRepMaxTheoretical(exerciseId, onSuccess, onError, onComplete){
+async function oneRepMaxTheoretical(exerciseId){
   const relativeUrl = `stats/oneRepMaxTheoretical/${exerciseId}`;
-  return await baseHttpService.executeGet(relativeUrl, params, onSuccess, onError, onComplete);
+  return await baseHttpService.executeGet(relativeUrl);
 }
 
 module.exports = {

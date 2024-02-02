@@ -1,11 +1,10 @@
 import AddSetForm from './AddSetForm';
 
-export default function AddWorkout(){
+export default function AddWorkout({ exercises }){
   return (
     <section>
-      <h2>Today's Workout</h2>
-      <p>No sets today.</p>
-      <AddSetForm/>
+      <h2>Add Workout</h2>
+      <AddSetForm exercises={exercises}/>
     </section>
   )
 }
