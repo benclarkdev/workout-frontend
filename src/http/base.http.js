@@ -3,7 +3,9 @@ async function executeGet(relativeUrl, params) {
     const absoluteUrl = getFullUrl(relativeUrl);
 
     const response = await fetch(absoluteUrl);
+
     const responseJson = await response.json();
+    
     return responseJson;
   } catch (error) {
     console.error(error);
@@ -30,11 +32,8 @@ async function executePost(relativeUrl, data) {
 
     const response = await fetch(absoluteUrl, options);
 
-    console.log('response', response);
-
     const responseJson = await response.json();
 
-    console.log('responseJson', responseJson);
     return responseJson;
   } catch (error) {
     console.error(error);

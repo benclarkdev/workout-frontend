@@ -76,8 +76,8 @@ export default function App(){
             </select>
           </div>
         </section>
-        <AddWorkout selectedExercise={selectedExercise} />
         <History selectedExercise={selectedExercise} />
+        <AddWorkout selectedExercise={selectedExercise} />
       </div>
     )
   }
