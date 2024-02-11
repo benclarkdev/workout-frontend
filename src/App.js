@@ -4,8 +4,11 @@ import exerciseHttpService from './http/exercise.http';
 
 import AddWorkout from './features/add/AddWorkout';
 import History from './features/history/History';
+import Header from './features/header/Header';
 
-import './features/styles/form.css';
+import './styles/forms.scss';
+
+import './App.scss';
 
 export default function App(){
   const [exercises, setExercises] = useState([]);
@@ -40,32 +43,39 @@ export default function App(){
 
   if (isLoading){
     return (
-      <section>
+      <div>
+        <Header></Header>
         <p className="container">
           Loading...
         </p>
-      </section>
+      </div>
     )
   } else if (exercises) { 
     return (
       <div className="container">
-        <h1>Workout Tracker!</h1>
-        <label htmlFor="person">Person</label>
-        <select name="person"
-                value={selectedPerson}
-                onChange={handlePersonChange}>
-          <option value=''></option>
-          <option value='Ben'>Ben</option>
-          <option value='Craig'>Craig</option>
-        </select>
-        <label htmlFor="exercise">Exercise</label>
-        <select name="exercise"
-                  value={selectedExercise}
-                  disabled={isLoading}
-                  onChange={handleExerciseSelected}>
-          <option value=""></option>
-          {exerciseOptions}
-        </select>
+        <Header></Header>
+        <section className="workout-selector">
+          <div className="form-control">
+            <label htmlFor="person">Person</label>
+            <select name="person"
+                    value={selectedPerson}
+                    onChange={handlePersonChange}>
+              <option value=''></option>
+              <option value='Ben'>Ben</option>
+              <option value='Craig'>Craig</option>
+            </select>
+          </div>
+          <div className="form-control">
+            <label htmlFor="exercise">Exercise</label>
+            <select name="exercise"
+                      value={selectedExercise}
+                      disabled={isLoading}
+                      onChange={handleExerciseSelected}>
+              <option value=""></option>
+              {exerciseOptions}
+            </select>
+          </div>
+        </section>
         <AddWorkout selectedExercise={selectedExercise} />
         <History selectedExercise={selectedExercise} />
       </div>

@@ -1,0 +1,14 @@
+@use './styles/mixins.scss' as mixins;
+
+@import './styles/forms.scss';
+@import './styles/typography.scss';
+
+.workout-selector {
+  display: flex;
+  flex-direction: column;
+
+  @include mixins.desktop-only(){
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+}

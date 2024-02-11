@@ -1,0 +1,9 @@
+// variables
+$breakpoint-phone: 640px;
+
+// Define mixin for desktop-only styles
+@mixin desktop-only {
+  @media screen and (min-width: $breakpoint-phone) {
+    @content;
+  }
+}

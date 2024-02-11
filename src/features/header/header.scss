@@ -1,0 +1,14 @@
+@import '../../styles/typography.scss';
+
+header {
+  background-color: darkred;
+  color: white;
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+
+  h2 {
+    flex: 1
+  }
+}

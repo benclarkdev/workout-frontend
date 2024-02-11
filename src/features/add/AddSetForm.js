@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import '../../styles/forms.scss';
+
 export default function AddSetForm({exercise, person}){
   // TODO: initialize and get all of the exercises
   const [formData, setFormData] = useState({
@@ -23,7 +25,7 @@ export default function AddSetForm({exercise, person}){
   return (
     <section>
       <form onSubmit={handleSubmit}>
-        <div className="form-input">
+        <div className="form-control">
           <label htmlFor="reps">Reps</label>
           <input type="number"
                 name="reps"
@@ -33,7 +35,7 @@ export default function AddSetForm({exercise, person}){
                 onChange={handleChange}
                 disabled={status === 'submitting'} />
         </div>
-        <div className="form-input">
+        <div className="form-control">
           <label htmlFor="weight">Weight</label>
           <input name="weight"
                 type="number"
